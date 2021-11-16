@@ -1,0 +1,8 @@
+dao/Sql2oFoodTest.java
+ dao.Sql2oFoodTest
+models/FoodTest.java
+ models.FoodTest
+dao/Sql2oRestaurantTest.java
+ dao.Sql2oRestaurantTest
+models/RestaurantTest.java
+ models.RestaurantTest
