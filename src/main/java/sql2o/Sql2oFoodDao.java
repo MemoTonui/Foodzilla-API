@@ -25,6 +25,13 @@ public class Sql2oFoodDao implements FoodDao {
             System.out.println(ex);
         }
     }
+    @Override
+    public List<Food> getTheFoodsInARestaurant(int restaurant_id){
+        try(Connection con = sql2o.open()){
+            String sql = "SELECT * FROM food WHERE restaurant_id =:restaurant_id";
+            return con.createQuery(sql).addParameter("restaurant_id",restaurant_id).executeAndFetch(Food.class);
+        }
+    }
 
     @Override
     public List<Food> getAllFoods() {

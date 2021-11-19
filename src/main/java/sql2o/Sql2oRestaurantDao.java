@@ -20,7 +20,6 @@ public class Sql2oRestaurantDao implements RestaurantDao {
     public void addRestaurant(Restaurants restaurants) {
         try(Connection con = sql2o.open()){
             String addRestaurants = "INSERT INTO restaurants( name,  rating,  location,  image_url,  latitude,  longitude, isclosed) VALUES (:name,  :rating,  :location,  :image_url,   :latitude,  :longitude, :isclosed  );";
-
             int restaurant_id =(int) con.createQuery(addRestaurants,true).bind(restaurants).executeUpdate().getKey();
             restaurants.setRestaurant_id(restaurant_id);
         }catch (Sql2oException ex) {

@@ -54,30 +54,20 @@ public class App {
         //Get all foods in a restaurant
         get("/restaurant/:id/food", "application/json",(request,response)->{
             int id = Integer.parseInt(request.params("id"));
-            if(restaurantDao.getAllFoodsInRestaurant(id).size()>0){
-                return gson.toJson(restaurantDao.getAllFoodsInRestaurant(id));
+             Restaurants restaurantToFind = restaurantDao.findRestaurantById(id);
+             List<Food> allFood;
+            if (restaurantToFind == null) {
+                return "{\"message\":\"Sorry!!This Restaurant Doesn't Exist!!.\"}";
             }
+            allFood = foodDao.getTheFoodsInARestaurant(id);
+           if(allFood.size()>0){
+               return gson.toJson(allFood);            }
             else {
                 return "{\"message\":\"Sorry!!This Restaurant is Empty!!.\"}";
             }
+
         });
-        //Add Food to a restaurant
-        post("/restaurant/:id/food/:food_id","application/json",(request,response)->{
-            int restaurant_id = Integer.parseInt(request.params("id"));
-            int food_id = Integer.parseInt(request.params("food_id"));
-            Restaurants restaurants = restaurantDao.findRestaurantById(restaurant_id);
-            Food food = foodDao.findFoodById(food_id);
-            if(restaurants==null){
-                return "{\"message\":\"The Restaurant with that id does not exist!!\"}";
-            }
-            if(food==null){
-                return "{\"message\":\"The Food with that id does not exist!!\"}";
-            }
-            restaurantDao.addFoodToRestaurant(food,restaurants);
-            List<Food> foodsInRestaurant = restaurantDao.getAllFoodsInRestaurant(restaurant_id);
-            response.status(201);
-            return  gson.toJson(foodsInRestaurant);
-        });
+
 
         //Add Food
         post("/food/new","application/json",(request, response) -> {
