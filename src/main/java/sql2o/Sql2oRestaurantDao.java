@@ -19,10 +19,10 @@ public class Sql2oRestaurantDao implements RestaurantDao {
     @Override
     public void addRestaurant(Restaurants restaurants) {
         try(Connection con = sql2o.open()){
-            String addRestaurants = "INSERT INTO restaurants( name,  rating,  location,  image_url,  latitude,  longitude, isclosed) VALUES (:name,  :rating,  :location,  :image_url,   :latitude,  :longitude, :closed  );";
+            String addRestaurants = "INSERT INTO restaurants( name,  rating,  location,  image_url,  latitude,  longitude, isclosed) VALUES (:name,  :rating,  :location,  :image_url,   :latitude,  :longitude, :isclosed  );";
 
             int restaurant_id =(int) con.createQuery(addRestaurants,true).bind(restaurants).executeUpdate().getKey();
-            restaurants.setId(restaurant_id);
+            restaurants.setRestaurant_id(restaurant_id);
         }catch (Sql2oException ex) {
             System.out.println(ex);
         }
@@ -31,8 +31,8 @@ public class Sql2oRestaurantDao implements RestaurantDao {
     @Override
     public void addFoodToRestaurant(Food food, Restaurants restaurants) {
         try(Connection con = sql2o.open()) {
-            String addFoodToRestaurant = "INSERT INTO food_restaurants(food_id, restaurant_id) VALUES (:food_id, :id) ";
-            con.createQuery(addFoodToRestaurant).addParameter("food_id",food.getFood_id()).addParameter("id", restaurants.getId()).executeUpdate();
+            String addFoodToRestaurant = "INSERT INTO food_restaurants(food_id, restaurant_id) VALUES (:food_id, :restaurant_id) ";
+            con.createQuery(addFoodToRestaurant).addParameter("food_id",food.getFood_id()).addParameter("restaurant_id", restaurants.getRestaurant_id()).executeUpdate();
              String sizeQuery ="SELECT food_id FROM food_restaurants";
              List<Integer> size= con.createQuery(sizeQuery).executeAndFetch(Integer.class);
         }
@@ -52,7 +52,7 @@ public class Sql2oRestaurantDao implements RestaurantDao {
     @Override
     public Restaurants findRestaurantById(int restaurant_id) {
         try(Connection con = sql2o.open()){
-            return con.createQuery("SELECT * FROM restaurants WHERE id=:id").addParameter("id",restaurant_id).executeAndFetchFirst(Restaurants.class);
+            return con.createQuery("SELECT * FROM restaurants WHERE restaurant_id=:restaurant_id").addParameter("restaurant_id",restaurant_id).executeAndFetchFirst(Restaurants.class);
         }
 
     }

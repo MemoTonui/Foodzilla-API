@@ -5,7 +5,7 @@ import java.util.Objects;
 public class Food {
     private int food_id;
     private String food_name;
-    private int food_ratings;
+    private int food_rating;
     private String food_image;
    private int restaurant_id;
    private int food_price;
@@ -14,9 +14,9 @@ public class Food {
     }
 
 
-    public Food(String food_name, int food_ratings, String food_image, int restaurant_id, int food_price) {
+    public Food(String food_name, int food_rating, String food_image, int restaurant_id, int food_price) {
         this.food_name = food_name;
-        this.food_ratings = food_ratings;
+        this.food_rating = food_rating;
         this.food_image = food_image;
         this.restaurant_id = restaurant_id;
         this.food_price = food_price;
@@ -38,12 +38,12 @@ public class Food {
         this.food_name = food_name;
     }
 
-    public int getFood_ratings() {
-        return food_ratings;
+    public int getFood_rating() {
+        return food_rating;
     }
 
-    public void setFood_ratings(int food_ratings) {
-        this.food_ratings = food_ratings;
+    public void setFood_rating(int food_rating) {
+        this.food_rating = food_rating;
     }
 
     public String getFood_image() {
@@ -75,11 +75,11 @@ public class Food {
         if (this == o) return true;
         if (!(o instanceof Food)) return false;
         Food food = (Food) o;
-        return food_id == food.food_id && food_ratings == food.food_ratings && restaurant_id == food.restaurant_id && food_price == food.food_price && food_name.equals(food.food_name) && food_image.equals(food.food_image);
+        return food_id == food.food_id && food_rating == food.food_rating && restaurant_id == food.restaurant_id && food_price == food.food_price && food_name.equals(food.food_name) && food_image.equals(food.food_image);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(food_id, food_name, food_ratings, food_image, restaurant_id, food_price);
+        return Objects.hash(food_id, food_name, food_rating, food_image, restaurant_id, food_price);
     }
 }

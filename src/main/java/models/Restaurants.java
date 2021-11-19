@@ -1,12 +1,12 @@
 package models;
 
 public class Restaurants {
-    private int id;
+    private int restaurant_id;
     private String name;
     private float rating;
     private String location;
     private String image_url;
-    private Boolean closed;
+    private Boolean isclosed;
     private Double latitude;
     private Double longitude;
 
@@ -15,23 +15,23 @@ public class Restaurants {
 
     }
 
-    public Restaurants(String name, float rating, String location, String image_url, Boolean closed, Double latitude, Double longitude) {
+    public Restaurants(String name, float rating, String location, String image_url, Boolean isclosed, Double latitude, Double longitude) {
         this.name = name;
         this.rating = rating;
         this.location = location;
         this.image_url = image_url;
-        this.closed = closed;
+        this.isclosed = isclosed;
         this.latitude = latitude;
         this.longitude = longitude;
 
     }
 
-    public int getId() {
-        return id;
+    public int getRestaurant_id() {
+        return restaurant_id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setRestaurant_id(int restaurant_id) {
+        this.restaurant_id = restaurant_id;
     }
 
     public String getName() {
@@ -66,12 +66,12 @@ public class Restaurants {
         this.image_url = image_url;
     }
 
-    public Boolean getClosed() {
-        return closed;
+    public Boolean getIsclosed() {
+        return isclosed;
     }
 
-    public void setClosed(Boolean closed) {
-        this.closed = closed;
+    public void setIsclosed(Boolean isclosed) {
+        this.isclosed = isclosed;
     }
 
     public Double getLatitude() {

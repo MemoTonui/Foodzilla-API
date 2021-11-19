@@ -3,7 +3,7 @@ SET MODE PostgresSQL;
 CREATE  DATABASE foodzilla;
 \c foodzilla
 
-CREATE TABLE IF NOT EXISTS restaurants(   id serial PRIMARY KEY,
+CREATE TABLE IF NOT EXISTS restaurants(   restaurant_id serial PRIMARY KEY,
                                           name VARCHAR,
                                           rating float,
                                           location VARCHAR ,
@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS food(
                                    restaurant_id int
 );
 CREATE TABLE IF NOT EXISTS food_restaurants (
-                                                 id SERIAL PRIMARY KEY,
+                                                 restaurant_id SERIAL PRIMARY KEY,
                                                 food_id INT,
                                                  restaurant_id INT
 );

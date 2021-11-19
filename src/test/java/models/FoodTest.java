@@ -34,13 +34,13 @@ public class FoodTest {
     @Test
     public  void setRatings_setsRatingsCorrectly_true(){
         Food food = new Food( "Chips",5,"https://chipo.com",1,200);
-        food.setFood_ratings(3);
-        assertNotEquals(5,food.getFood_ratings());
+        food.setFood_rating(3);
+        assertNotEquals(5,food.getFood_rating());
     }
     @Test
     public  void getRatings_getsRatingsCorrectly_true(){
         Food food = new Food( "Chips",5,"https://chipo.com",1,200);
-        assertEquals(5,food.getFood_ratings());
+        assertEquals(5,food.getFood_rating());
     }
 
     @Test

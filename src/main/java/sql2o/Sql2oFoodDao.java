@@ -17,7 +17,7 @@ public class Sql2oFoodDao implements FoodDao {
 
     @Override
     public void addFood(Food food) {
-        String addFood = "INSERT INTO food(food_name,food_rating, food_image,food_price, restaurant_id) VALUES (:food_name,:food_ratings, :food_image,:food_price, :restaurant_id)";
+        String addFood = "INSERT INTO food(food_name,food_rating, food_image,food_price, restaurant_id) VALUES (:food_name,:food_rating, :food_image,:food_price, :restaurant_id)";
         try(Connection con = sql2o.open()){
             int id = (int) con.createQuery(addFood, true).bind(food).executeUpdate().getKey();
             food.setFood_id(id);
@@ -34,6 +34,8 @@ public class Sql2oFoodDao implements FoodDao {
         }
 
     }
+
+
 
 
 
