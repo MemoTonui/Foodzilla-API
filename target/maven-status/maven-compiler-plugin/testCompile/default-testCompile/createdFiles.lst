@@ -1,0 +1,4 @@
+models\FoodTest.class
+dao\Sql2oRestaurantTest.class
+models\RestaurantTest.class
+dao\Sql2oFoodTest.class
